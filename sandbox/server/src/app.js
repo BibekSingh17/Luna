@@ -1,7 +1,7 @@
 import express from 'express'
 import morgan from 'morgan'
-
-
+import { createPod } from './kubernetes/pod.js'
+import { createService } from './kubernetes/service.js'
 
 const app = express()
 
@@ -15,6 +15,10 @@ app.get('/api/sandbox/health', (req, res) => {
     .json({
         message : 'sandbox health api is running'
     })
+})
+
+app.post("/api/sandbox/start", (req, res) => {
+
 })
 
 export default app

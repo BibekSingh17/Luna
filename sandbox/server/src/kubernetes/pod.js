@@ -31,4 +31,13 @@ export async function createPod(sandboxId){
             ]
         }
     }
+
+    const response = await k8sCoreV1Api.createNamespacePod({
+        namespace : 'default',
+        body : podManifest
+    })
+
+    return response;
+    
+
 }
