@@ -1,7 +1,9 @@
 import express from 'express'
 import {createProxyMiddleware} from 'http-proxy-middleware'
+import morgan from 'morgan'
 
 const app = express()
+app.use(morgan('combined'))
 
 app.use((req, res, next) => {
     const host = req.headers.host;
@@ -15,7 +17,7 @@ app.use((req, res, next) => {
         ws: true,
 
     })(req, res, next);
-    
+
 })
 
 export default app
