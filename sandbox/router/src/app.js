@@ -23,6 +23,8 @@ const proxies= {}
 
 function getProxy(sandboxId){
 
+    const target = `http://sandbox-service-${sandboxId}`
+
     if(!proxies[sandboxId]){
         proxies[sandboxId] = createProxyMiddleware({
             target,
@@ -37,8 +39,6 @@ function getProxy(sandboxId){
 app.use((req, res, next) => {
     const host = req.headers.host;
     const sandboxId = host.split('.')[0]
-
-    const target = `http://sandbox-service-${sandboxId}`
 
     return getProxy(sandboxId) (req, res, next);
 
